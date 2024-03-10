@@ -1,26 +1,32 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import logo from "./logo.svg";
+import "./App.css";
+// import { ContactPage } from "./ContactPage";
+import { ContactPage2, contactPageAction } from "./ContactPage2";
+import { ThankYouPage } from "./ThankYouPage";
+import {
+  createBrowserRouter,
+  RouterProvider,
+  Navigate,
+} from "react-router-dom";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+  return <RouterProvider router={router} />;
 }
 
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Navigate to="contact" />,
+  },
+  {
+    path: "/contact",
+    element: <ContactPage2 />,
+    action: contactPageAction,
+  },
+  {
+    path: "/thankyou/:name",
+    element: <ThankYouPage />,
+  },
+]);
 export default App;
